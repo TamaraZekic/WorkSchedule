@@ -1,0 +1,82 @@
+<div id="container">
+    <div *ngIf="displayUserDataFlag" class="changingProjectAndTitleOfUserDiv">
+        <h3>{{userData.firstName}} {{userData.lastName}}</h3><br>
+        <div class="titleSelectDiv">
+            <label>Choose user's title</label><br>
+            <select [(ngModel)]="choosenTitle" [ngModelOptions]="{standalone: true}" id="titleSelectId" class="form-control select titleSelect">
+                <option selected></option>
+                <option>JUNIOR</option>
+                <option>MEDIOR</option>
+                <option>SENIOR</option>
+            </select>
+        </div>
+        <button id="saveChangesBtn" (click)="saveChanges()" class="btn btn-primary">Save changes</button>
+    </div>
+    <div *ngIf="displayUserDataFlag" class="addingNewTaskUserDiv">
+        <h3>Add new task to {{userData.firstName}} {{userData.lastName}}</h3>
+        <div class="addNewTaskDiv">
+            <input [(ngModel)]="taskName" [ngModelOptions]="{standalone: true}" placeholder="Enter task name *" class="form-control"/><br>
+            <textarea [(ngModel)]="taskDescription" [ngModelOptions]="{standalone: true}" cols="2" placeholder="Enter task description *" class="form-control"></textarea><br>
+            <button (click)="addTask()" class="btn btn-success">Add task</button>
+        </div>
+    </div>
+    <div *ngIf="displayUserTasksFlag">
+        <h2>Selected user tasks</h2>
+        <table id="tasksTable" class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th class="col1" scope="col">Name</th>
+            <th class="col2" scope="col">Description</th>
+            <th class="col3" scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tableRows" *ngFor="let task of tasks; let i=index">
+                <td>
+                    <label>{{task.name}}</label>
+                </td>
+                <td>
+                    <label>{{task.description}}</label>
+                </td>
+                <td>
+                    <label>{{task.status}}</label>
+                </td>
+            </tr>    
+        </tbody>
+        </table>
+    </div>
+    <h2>Users in project : {{this.projectName}}</h2>
+    <table id="companyTable" class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th class="col3" scope="col">First name</th>
+            <th class="col3" scope="col">Last name</th>
+            <th class="col3" scope="col">E-mail</th>
+            <th class="col3" scope="col">Title</th>
+            <th class="col3" scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr class="tableRows" *ngFor="let user of usersInTeam; let i=index">
+                <td>
+                    <label>{{user.firstName}}</label>
+                </td>
+                <td>
+                    <label>{{user.lastName}}</label>
+                </td>
+                <td>
+                    <label>{{user.email}}</label>
+                </td>
+                <td>
+                    <label>{{user.jobTitle}}</label>
+                </td>
+                <td>
+                    <button (click)="getUserProfile(user.id)" class="btn btn-warning">See profile</button>
+                    <button (click)="displayUserData(user,i)" class="btn btn-info">Add task for user</button>
+                    <button (click)="displayTasksByUser(user.id,i)" class="btn btn-success">See user tasks</button>
+                    <button (click)="changeUserData(user.id)" class="btn btn-primary">Change user data</button>
+                </td>
+            </tr>  
+          </tbody>
+      </table>
+</div>

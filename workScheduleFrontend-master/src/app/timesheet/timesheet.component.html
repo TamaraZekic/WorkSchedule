@@ -1,0 +1,43 @@
+<div id="container">
+  <label for="start">Choose a month: </label>
+  <input type="month" (change)="choosingMonthChangeListener($event)" min="2018-03"  [(ngModel)]="this.currentMonth">
+  <table id="timesheetTable" class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th class="col1" scope="col">Day</th>
+        <th class="col2" scope="col">Task</th>
+        <th class="col3" scope="col">Description</th>
+        <th class="timeTab" scope="col">Start time</th>
+        <th class="timeTab" scope="col">End time</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tsEntry of timesheetEntries; let i=index">
+        <td><label *ngIf="dayDisplaying(timesheetEntries,i)">{{tsEntry.day+"."}}</label></td>
+        <td>
+          <input type="text" class="form-control" (keydown)="tsEntry.changed = true" [(ngModel)]="tsEntry.task" />
+          <small class="mandatoryMessage" *ngIf="tsEntry.task == ''">Task field is mandatory!</small>
+        </td>
+        <td><textarea class="form-control" (keydown)="tsEntry.changed = true" [(ngModel)]="tsEntry.description" type="text" >{{tsEntry.description}}</textarea></td>
+        <td>
+          <input type="time" class="form-control" (change)="tsEntry.changed = true" [(ngModel)]="tsEntry.startTime"/>
+          <small class="mandatoryMessage" *ngIf="tsEntry.startTime == ''">Start time field is mandatory!</small><br>
+        </td>
+        <td>
+          <input type="time" (change)="tsEntry.changed = true" class="form-control" [(ngModel)]="tsEntry.endTime"/>
+          <small class="mandatoryMessage" *ngIf="tsEntry.endTime == ''">End time field is mandatory!</small><br>
+          <small *ngIf="getMinutes(tsEntry.startTime) >  getMinutes(tsEntry.endTime)">Start time is after end time!</small><br>
+        </td>
+        <td>
+          <button *ngIf="tsEntry.changed" (click)="saveTimesheetEntry(tsEntry)" class="btn btn-success">Save</button>
+          <button class="btn btn-danger" (click)="removeTimesheetEntry(tsEntry,i)">Remove</button>
+          <button class="btn btn-primary" (click)="addTimesheetEntryForSameDay(tsEntry,i)" *ngIf="timesheetEntries[i+1] === undefined || timesheetEntries[i+1].day != timesheetEntries[i].day">Add</button>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>
+  <!--Za sad za novi dan dodaje sleddeci od onog koji je trenutno unesen-->
+  <button id="addNewDayTsBtn" (click)="addTimesheetEntryForNewDay()" class="btn btn-info">Add timesheet for new day</button>
+</div>

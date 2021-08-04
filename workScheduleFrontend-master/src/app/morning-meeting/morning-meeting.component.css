@@ -1,0 +1,21 @@
+#container {
+    margin-top:7%;
+}
+.requiredText {
+    color:red;
+}
+button {
+    width : 200px;
+    height: 80px;
+    font-size: 20px;
+}
+.panel {
+    width:45%;
+    height: 100px;
+}
+.rightPanel {
+    float:right;
+}
+.leftPanel{
+    float:left;
+}

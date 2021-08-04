@@ -1,0 +1,36 @@
+#container{
+    margin-top: 100px;
+}
+table {
+    margin-top: 50px;
+}
+td {
+    border : 1px solid #ddd;
+}
+th {
+    font-size : 20px;
+}
+.col1{
+    width: 5%;
+}
+.col2{
+    width: 30%;
+}
+.col3{
+    width: 35%;
+}
+.timeTab {
+    width: 10%;
+}
+th{
+    text-align: center;
+}
+small{
+    color:#fcb103;
+}
+.mandatoryMessage {
+    color:red;
+}
+#addNewDayTsBtn {
+    margin-top:3%;
+}

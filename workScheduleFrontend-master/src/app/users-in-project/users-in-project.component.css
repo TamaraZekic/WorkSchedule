@@ -1,0 +1,39 @@
+#container {
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#companyTable {
+    margin-top: 5%;
+}
+.changingProjectAndTitleOfUserDiv {
+    width : 50%;
+    height: 200px;
+    float: left;
+}
+.addingNewTaskUserDiv {
+    width : 45%;
+    height: 200px;
+    float: right;
+}
+.addNewTaskDiv {
+    margin-top: 1%;
+    width: 70%;
+    height: 60%;
+}
+.projectSelectDiv{
+    width: 45%;
+    height: 40%;
+    float:left;
+}
+.titleSelectDiv{
+    width: 45%;
+    height: 40%;
+}
+#saveChangesBtn {
+    margin-top:1%;
+}
+.selectedRow {
+    background-color: hsl(0, 79%, 23%);;
+    color:white;
+}
